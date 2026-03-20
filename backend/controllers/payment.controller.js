@@ -1,15 +1,9 @@
-import { createPaymentIntent } from "../services/stripe.service.js";
+import { createCheckoutSession } from "../services/stripe.service.js";
 
 export const createPayment = async (req, res) => {
-  try {
-    const { amount } = req.body;
+  const { amount } = req.body;
 
-    const paymentIntent = await createPaymentIntent(amount);
+  const session = await createCheckoutSession(amount);
 
-    res.json({
-      clientSecret: paymentIntent.client_secret
-    });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
+  res.json({ id: session.id });
 };
