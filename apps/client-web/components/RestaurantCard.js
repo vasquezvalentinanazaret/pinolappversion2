@@ -1,14 +1,23 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+
 export default function RestaurantCard({ restaurant }) {
+  const router = useRouter();
+
   return (
-    <div style={{
-      background: "#fff",
-      padding: 10,
-      borderRadius: 10,
-      marginBottom: 10
-    }}>
+    <div
+      className="card"
+      onClick={() => router.push(`/restaurant/${restaurant._id}`)}
+      style={{ cursor: "pointer" }}
+    >
+      <img
+        src={restaurant.image || "https://via.placeholder.com/300"}
+        style={{ width: "100%", borderRadius: 12 }}
+      />
+
       <h3>{restaurant.name}</h3>
-      <p>⭐ {restaurant.rating}</p>
-      <p>{restaurant.deliveryTime}</p>
+      <p>⭐ {restaurant.rating} • {restaurant.deliveryTime}</p>
     </div>
   );
 }
