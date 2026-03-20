@@ -17,9 +17,12 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
-app.use(express.json());
-
+app.use(cors({
+  origin: [
+    "http://localhost:3000",
+    "https://tu-frontend.vercel.app"
+  ]
+}));
 app.use("/api/auth", authRoutes);
 app.use("/api/restaurants", restaurantRoutes);
 app.use("/api/orders", orderRoutes);
