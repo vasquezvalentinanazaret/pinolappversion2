@@ -1,12 +1,6 @@
 {
-  "name": "mongo-app",
-  "version": "1.0.0",
-  "description": "Conexion a MongoDB Atlas",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js"
-  },
+  "type": "module",
   "dependencies": {
-    "mongodb": "^6.7.0"
+    "@supabase/supabase-js": "^2.0.0"
   }
 }
