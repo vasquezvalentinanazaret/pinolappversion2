@@ -1,17 +1,12 @@
 {
-  "name": "pinol-nica-delivery",
+  "name": "mongo-app",
   "version": "1.0.0",
-  "private": true,
-  "workspaces": [
-    "apps/*",
-    "backend",
-    "packages/*"
-  ],
+  "description": "Conexion a MongoDB Atlas",
+  "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"npm run dev --workspace=backend\"",
-    "install-all": "npm install --workspaces"
+    "start": "node index.js"
   },
   "dependencies": {
-    "concurrently": "^8.2.2"
+    "mongodb": "^6.7.0"
   }
 }
