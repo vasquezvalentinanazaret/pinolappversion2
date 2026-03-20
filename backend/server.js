@@ -7,7 +7,9 @@ import authRoutes from "./routes/auth.routes.js";
 import restaurantRoutes from "./routes/restaurant.routes.js";
 import orderRoutes from "./routes/order.routes.js";
 import foodRoutes from "./routes/food.routes.js";
+import userRoutes from "./routes/user.routes.js";
 
+app.use("/api/users", userRoutes);
 app.use("/api/foods", foodRoutes);
 dotenv.config();
 
