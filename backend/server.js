@@ -6,7 +6,9 @@ import mongoose from "mongoose";
 import authRoutes from "./routes/auth.routes.js";
 import restaurantRoutes from "./routes/restaurant.routes.js";
 import orderRoutes from "./routes/order.routes.js";
+import foodRoutes from "./routes/food.routes.js";
 
+app.use("/api/foods", foodRoutes);
 dotenv.config();
 
 const app = express();
