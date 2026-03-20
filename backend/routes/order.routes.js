@@ -11,3 +11,12 @@ router.post("/", verifyToken, createOrder);
 router.get("/", verifyToken, getOrders);
 
 export default router;
+router.put("/:id", async (req, res) => {
+  const order = await Order.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    { new: true }
+  );
+
+  res.json(order);
+});
