@@ -1,19 +1,36 @@
-import express from "express";
-import mongoose from "mongoose";
+const { MongoClient } = require('mongodb');
 
-const app = express();
+// 🔥 TU CONEXIÓN REAL (ya sin <db_password>)
+const uri = "mongodb+srv://Valentina:l7SsC8iCTq1jLzUW@cluster0.y3mdon3.mongodb.net/?appName=Cluster0";
 
-// 👇 PEGA TU URL AQUÍ
-const URI = "mongodb+srv://Valentina:TU_PASSWORD@cluster0.y3mdon3.mongodb.net/test";
+const client = new MongoClient(uri);
 
-mongoose.connect(URI)
-  .then(() => console.log("🔥 Conectado a MongoDB"))
-  .catch(err => console.error("❌ Error:", err));
+async function run() {
+  try {
+    await client.connect();
+    console.log("✅ Conectado a MongoDB Atlas");
 
-app.get("/", (req, res) => {
-  res.send("API funcionando 🚀");
-});
+    // Crear o usar base de datos
+    const db = client.db("miBase");
+    const collection = db.collection("usuarios");
 
-app.listen(3000, () => {
-  console.log("Servidor en http://localhost:3000");
-});
+    // Insertar prueba
+    const result = await collection.insertOne({
+      nombre: "Valentina",
+      edad: 20
+    });
+
+    console.log("📦 Documento insertado:", result.insertedId);
+
+    // Leer datos
+    const data = await collection.find().toArray();
+    console.log("📄 Datos:", data);
+
+  } catch (error) {
+    console.error("❌ Error:", error);
+  } finally {
+    await client.close();
+  }
+}
+
+run();
