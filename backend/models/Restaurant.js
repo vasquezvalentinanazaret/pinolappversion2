@@ -5,6 +5,6 @@ const restaurantSchema = new mongoose.Schema({
   image: String,
   deliveryTime: String,
   rating: Number
-});
+}, { timestamps: true });
 
 export default mongoose.model("Restaurant", restaurantSchema);
