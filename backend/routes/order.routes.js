@@ -3,10 +3,11 @@ import {
   createOrder,
   getOrders
 } from "../controllers/order.controller.js";
+import { verifyToken } from "../middleware/auth.js";
 
 const router = express.Router();
 
-router.post("/", createOrder);
-router.get("/", getOrders);
+router.post("/", verifyToken, createOrder);
+router.get("/", verifyToken, getOrders);
 
 export default router;
